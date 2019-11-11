@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/videoDocument"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/spacex_margin_very_small"
+        android:layout_marginStart="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_media_detail_top_margin"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wikiDocument"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/spacex_margin_large"
+        app:cardElevation="@dimen/spacex_card_elevation_small">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/videoThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/spacex_video_thumbnail"
+                android:background="@android:color/black"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/spacex_video_thumbnail"
+                android:src="@drawable/ic_youtube"/>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/wikiDocument"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_margin_very_small"
+        android:layout_marginTop="@dimen/spacex_media_detail_top_margin"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/articleDocument"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/videoDocument"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        app:cardCornerRadius="@dimen/spacex_margin_large"
+        app:cardElevation="@dimen/spacex_card_elevation_small">
+
+        <ImageView
+            android:id="@+id/wikiDocumentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/spacex_wiki_document"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_wiki" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/articleDocument"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_media_detail_top_margin"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wikiDocument"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.019"
+        app:cardCornerRadius="@dimen/spacex_margin_large"
+        app:cardElevation="@dimen/spacex_card_elevation_small">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/spacex_article_document"
+            android:src="@drawable/ic_document" />
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/mediaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_margin_small"
+        android:layout_marginStart="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_margin_small"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/spacex_text_size_h_medium"
+        android:text="@string/spacex_media_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.016" />
+
+</android.support.constraint.ConstraintLayout>

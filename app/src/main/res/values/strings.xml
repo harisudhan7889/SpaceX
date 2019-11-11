@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SpaceX</string>
+    <string name="action_settings">Settings</string>
+    <string name="spacex_launch_list_title">Past SpaceX Launches</string>
+    <string name="spacex_launch_detail_title">Launch Details</string>
+    <string name="spacex_no_detail_label">No details available</string>
+    <string name="spacex_media_label">MEDIA</string>
+    <string name="spacex_other_detail_label">Other Details</string>
+
+    <!-- Content Description Text -->
+    <string name="spacex_video_thumbnail">Play youtube video about the launch</string>
+    <string name="spacex_video_play_icon">@string/spacex_video_thumbnail</string>
+    <string name="spacex_wiki_document">Open the wikipedia link about the launch</string>
+    <string name="spacex_article_document">Open the article link that has information about the launch</string>
+
+</resources>

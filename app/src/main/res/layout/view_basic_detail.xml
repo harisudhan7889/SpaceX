@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacex_margin_small"
+    android:layout_marginEnd="@dimen/spacex_margin_small"
+    android:layout_marginStart="@dimen/spacex_margin_small"
+    android:layout_marginTop="@dimen/spacex_margin_small"
+    app:cardCornerRadius="@dimen/spacex_margin_small"
+    app:cardElevation="@dimen/spacex_card_elevation_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/spacex_margin_small"
+        android:orientation="vertical">
+
+        <com.spacex.launch.common.widget.CircularImageView
+            android:id="@+id/launchThumbnail"
+            android:layout_width="@dimen/spacex_detail_thumbnail_size"
+            android:layout_height="@dimen/spacex_detail_thumbnail_size"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_launcher_background"
+            app:border_width="@dimen/space_circular_image_border_width"
+            app:shadow="true"
+            app:shadow_radius="@integer/spacex_circular_image_radius"/>
+
+        <TextView
+            android:id="@+id/missionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacex_detail_top_margin"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/spacex_text_size_large"
+            android:textStyle="bold"
+            tools:text="Mission Name" />
+
+        <TextView
+            android:id="@+id/missionDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacex_detail_top_margin"
+            android:gravity="center"
+            android:textSize="@dimen/spacex_text_size_medium"
+            tools:text="Mission Description" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

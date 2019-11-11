@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="spacex_circular_image_radius">10</integer>
+    <integer name="spacex_max_text_lines">2</integer>
+    <integer name="spacex_thumbnail_image_size">150</integer>
+</resources>

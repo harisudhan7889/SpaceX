@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.spacex.launch.common.widget.CircularImageView
+        android:id="@+id/launchThumbnail"
+        android:layout_width="@dimen/spacex_thumbnail_size"
+        android:layout_height="@dimen/spacex_thumbnail_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:border_width="@dimen/space_circular_image_border_width"
+        app:shadow="true"
+        app:shadow_radius="@integer/spacex_circular_image_radius" />
+
+    <TextView
+        android:id="@+id/missionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_margin_small"
+        android:layout_marginStart="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_margin_small"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/spacex_text_size_large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toEndOf="@id/launchThumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177"
+        tools:text="Falcon 2" />
+
+    <TextView
+        android:id="@+id/launchYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_divider_margin_right"
+        android:layout_marginStart="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_margin_small"
+        android:textSize="@dimen/spacex_text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/missionName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"
+        tools:text="2006" />
+
+    <TextView
+        android:id="@+id/launchDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacex_margin_small"
+        android:layout_marginEnd="@dimen/spacex_margin_small"
+        android:layout_marginStart="@dimen/spacex_margin_small"
+        android:layout_marginTop="@dimen/spacex_margin_small"
+        android:maxLines="@integer/spacex_max_text_lines"
+        android:textSize="@dimen/spacex_text_size_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/launchYear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/launchThumbnail"
+        app:layout_constraintTop_toBottomOf="@id/missionName"
+        app:layout_constraintVertical_bias="0.333"
+        tools:text="TextView" />
+
+</android.support.constraint.ConstraintLayout>

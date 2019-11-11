@@ -1,0 +1,26 @@
+<resources>
+    <dimen name="spacex_fab_margin">16dp</dimen>
+    <dimen name="spacex_thumbnail_size">70dp</dimen>
+    <dimen name="spacex_divider_margin_left">100dp</dimen>
+    <dimen name="spacex_divider_margin_right">20dp</dimen>
+    <dimen name="spacex_detail_thumbnail_size">100dp</dimen>
+    <dimen name="spacex_detail_top_margin">4dp</dimen>
+
+    <!-- Common dimensions-->
+    <dimen name="spacex_toolbar_elevation">4dp</dimen>
+    <dimen name="space_circular_image_border_width">2dp</dimen>
+    <dimen name="spacex_margin_large">16dp</dimen>
+    <dimen name="spacex_margin_medium">12dp</dimen>
+    <dimen name="spacex_margin_small">8dp</dimen>
+    <dimen name="spacex_margin_very_small">4dp</dimen>
+    <dimen name="spacex_card_elevation_small">4dp</dimen>
+
+    <!-- Media Items -->
+    <dimen name="spacex_media_detail_top_margin">48dp</dimen>
+
+    <!-- Scaled pixels -->
+    <dimen name="spacex_text_size_large">20sp</dimen>
+    <dimen name="spacex_text_size_h_medium">16sp</dimen>
+    <dimen name="spacex_text_size_medium">14sp</dimen>
+    <dimen name="spacex_text_size_small">12sp</dimen>
+</resources>
