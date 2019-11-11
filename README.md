@@ -3,7 +3,7 @@
 A simple demo project to display the past rocket launches  of spacex based on MVVM clean architecture.
 Below are the screeshots of the application
 
-<img src="https://github.com/harisudhan7889/SpaceX/blob/master/media/SpaceXScreens.png" width="920" style="max-width:920%;">
+<img src="https://github.com/harisudhan7889/SpaceX/blob/master/media/SpacexScreens.jpg" width="920" style="max-width:920%;">
 
 ### App Features
 
