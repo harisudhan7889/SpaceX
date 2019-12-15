@@ -1,6 +1,6 @@
 package com.spacex.launch.common.model
 
-import android.arch.persistence.room.ColumnInfo
+import androidx.room.ColumnInfo
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize

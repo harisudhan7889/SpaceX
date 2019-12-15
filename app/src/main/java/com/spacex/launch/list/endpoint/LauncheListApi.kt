@@ -1,7 +1,7 @@
 package com.spacex.launch.list.endpoint
 
 import com.spacex.launch.common.model.LaunchData
-import io.reactivex.Maybe
+import io.reactivex.Single
 import retrofit2.http.GET
 
 /**
@@ -15,5 +15,5 @@ interface LauncheListApi {
      * Get all spacex past launches.
      */
     @GET("launches/past")
-    fun getPastLaunches(): Maybe<ArrayList<LaunchData>>
+    fun getPastLaunches(): Single<List<LaunchData>>
 }

@@ -1,6 +1,6 @@
 package com.spacex.launch.detail.model
 
-import android.support.annotation.IntDef
+import androidx.annotation.IntDef
 
 /**
  * Holds the media links.

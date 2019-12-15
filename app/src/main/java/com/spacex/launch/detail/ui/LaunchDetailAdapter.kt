@@ -21,34 +21,29 @@ class LaunchDetailAdapter (context: Context):
         BaseViewHolder<Detail, OnItemClickListener<Detail>>>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Detail, OnItemClickListener<Detail>> {
-        var viewHolder: BaseViewHolder<Detail, OnItemClickListener<Detail>>?
-        when (viewType) {
+        return when (viewType) {
             Detail.BASIC -> {
-                viewHolder = BasicDetailViewHolder(inflate(R.layout.view_basic_detail, parent))
+                BasicDetailViewHolder(inflate(R.layout.view_basic_detail, parent))
             }
             Detail.MEDIA -> {
-                viewHolder = MediaDetailViewHolder(inflate(R.layout.view_media_detail, parent))
+                MediaDetailViewHolder(inflate(R.layout.view_media_detail, parent))
             }
             Detail.OTHER -> {
-                viewHolder = OtherDetailViewHolder(inflate(R.layout.view_other_detail, parent))
+                OtherDetailViewHolder(inflate(R.layout.view_other_detail, parent))
             }
             else -> {
-                viewHolder = super.createViewHolder(parent, viewType)
+                super.createViewHolder(parent, viewType)
             }
         }
-        return viewHolder
     }
 
     override fun getItemViewType(position: Int): Int {
-        val detail = getItem(position)
-        var type: Int?
-        type = when(detail) {
+        return when(getItem(position)) {
             is BasicDetail -> Detail.BASIC
             is MediaDetail -> Detail.MEDIA
             is OtherDetail -> Detail.OTHER
             else -> Detail.BASIC
         }
-        return type
     }
 
 }

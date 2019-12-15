@@ -1,8 +1,8 @@
 package com.spacex.launch.common.recycler
 
 import android.content.Context
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ import android.view.ViewGroup
  * @author Hari Hara Sudhan.N
  */
 abstract class BaseRvAdapter<T, L : OnItemClickListener<T>, VH : BaseViewHolder<T, L>>(val context: Context)
-    : RecyclerView.Adapter<VH>() {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<VH>() {
 
     private var itemClickListner: L? = null
     private val items: ArrayList<T> by lazy {
@@ -34,7 +34,7 @@ abstract class BaseRvAdapter<T, L : OnItemClickListener<T>, VH : BaseViewHolder<
      * @param viewType The view type of the new View.
      * @return A new ViewHolder that holds a View of the given view type.
      */
-    override abstract fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH
+    abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should

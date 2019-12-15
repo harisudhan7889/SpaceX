@@ -1,5 +1,6 @@
 package com.spacex.launch.detail.ui
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.spacex.launch.common.recycler.BaseViewHolder
 import com.spacex.launch.common.recycler.OnItemClickListener
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.view_other_detail.view.*
 class OtherDetailViewHolder(view: View?)
     : BaseViewHolder<Detail, OnItemClickListener<Detail>>(view) {
 
+    @SuppressLint("SetTextI18n")
     override fun onBind(detail: Detail?, listener: OnItemClickListener<Detail>?) {
         val otherDetail = detail as? OtherDetail
         otherDetail?.let {

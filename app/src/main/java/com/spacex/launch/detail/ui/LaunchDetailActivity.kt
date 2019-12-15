@@ -1,46 +1,55 @@
 package com.spacex.launch.detail.ui
 
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.spacex.launch.R
 import com.spacex.launch.common.AppUtil
-import com.spacex.launch.common.model.LaunchData
+import com.spacex.launch.common.archcomponent.ViewModelFactory
+import com.spacex.launch.common.model.*
 import com.spacex.launch.common.recycler.OnItemClickListener
 import com.spacex.launch.common.ui.BaseActivity
-import com.spacex.launch.detail.model.BasicDetail
+import com.spacex.launch.detail.archcomponent.LaunchDetailViewModel
 import com.spacex.launch.detail.model.Detail
 import com.spacex.launch.detail.model.MediaDetail
-import com.spacex.launch.detail.model.OtherDetail
 import kotlinx.android.synthetic.main.activity_launch_detail.*
+import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * @author Hari Hara Sudhan.N
  */
 class LaunchDetailActivity: BaseActivity(), OnItemClickListener<Detail> {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var launchDetailViewModel: LaunchDetailViewModel
+
     private var launchDetailAdapter: LaunchDetailAdapter? = null
-    private var launcData: LaunchData? = null
-    private val details = ArrayList<Detail>()
 
     companion object {
-        const val KEY = "LAUNCH_DETAIL"
+        private const val LAUNCH_DETAILS = "LAUNCH_DETAILS"
         @JvmStatic
         fun getActivityIntent(context: Context, launchData: LaunchData): Intent {
             val intent = Intent(context, LaunchDetailActivity::class.java)
-            intent.putExtra(KEY, launchData)
+            intent.putExtra(LAUNCH_DETAILS, launchData)
             return intent
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launch_detail)
         initViews()
-        updateAdapter()
+        addViewStateObserver()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        launchDetailViewModel.invoke(intent.getParcelableExtra(LAUNCH_DETAILS))
     }
 
     /**
@@ -58,10 +67,20 @@ class LaunchDetailActivity: BaseActivity(), OnItemClickListener<Detail> {
     }
 
     /**
-     * Method that initialize the recyclerview.
+     * Layout that is to be placed into the base container.
+     */
+    override val layoutId: Int
+        get() = R.layout.activity_launch_detail
+
+    override fun initializeViewModel() {
+        launchDetailViewModel = viewModelFactory.create(LaunchDetailViewModel::class.java)
+    }
+
+    /**
+     * Method that initialize the views.
      */
     private fun initViews() {
-        initActionBar()
+        initActionBarItems()
         launchDetailAdapter = LaunchDetailAdapter(this)
         launchDetails.apply {
             layoutManager = LinearLayoutManager(this@LaunchDetailActivity)
@@ -70,86 +89,45 @@ class LaunchDetailActivity: BaseActivity(), OnItemClickListener<Detail> {
     }
 
     /**
-     * Intializes the action bar.
+     * Initializes the action bar items.
      */
-    private fun initActionBar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            title = resources.getString(R.string.spacex_launch_detail_title)
-            it.setDisplayHomeAsUpEnabled(true)
-        }
+    private fun initActionBarItems() {
+        setHomeButtonVisible(true)
+        setScreenTitle(R.string.spacex_launch_detail_title)
     }
 
     /**
-     * Update the adapter with different details and also set the
-     * listener for the item click.
+     * Method that add the Live Data listener.
+     * Live Data is aware of its owner component's
+     * lifecycle and listens for the result accordingly.
+     * Result data are handled in the form state.
      *
-     * @see BasicDetail
-     * @see MediaDetail
-     * @see OtherDetail
+     * @see LoadingState
+     * @see DataState
+     * @see ErrorState
      */
-    private fun updateAdapter() {
-        launcData = intent.getParcelableExtra(KEY)
-        launcData?.also {
-            details add (it.basic())
-            details add (it.media())
-            details add (it.other())
-            launchDetailAdapter?.let {
-                it.setItems(details)
-                it.setItemClickListener(this)
-            }
-        }
-    }
-
-    // Kotlin's Extension function starts
-
-    /**
-     * Constructs the basic detail from the response.
-     *
-     * @return basic detail.
-     */
-    private fun LaunchData.basic(): Detail? {
-        return BasicDetail(missionName, details, links?.missionPatch, isSuccess)
-    }
-
-    /**
-     * Constucts the media detail from the response.
-     *
-     * @return media details which contains links.
-     */
-    private fun LaunchData.media(): Detail? {
-        return links?.let {
-            var videoThumbnail: String? = null
-            if(!it.youtubeId.isNullOrBlank()) {
-                videoThumbnail = "https://img.youtube.com/vi/${it.youtubeId}/1.jpg"
-            }
-            MediaDetail(it.videoLink, videoThumbnail, it.articleLink, it.wikiLink)
-        }
-    }
-
-    /**
-     * Constructs other details from the respose.
-     *
-     * @return other details.
-     */
-    private fun LaunchData.other(): Detail? {
-        val launchLocation = launchSite?.siteNameLong
-        val (rocketName, rocketType) = rocket
-        return OtherDetail(rocketName, rocketType, launchLocation)
-    }
-
-    // Extension function ends
-
-    /**
-     * infix function to add detail to the array.
-     * This is used to check null safety at one place
-     * before adding the detail to the array.
-     *
-     * @param detail can be any type of detail scoped to generic.
-     */
-    private infix fun ArrayList<Detail>.add(detail: Detail?) {
-        detail?.let {
-            add(detail)
-        }
+    private fun addViewStateObserver() {
+        launchDetailViewModel.getViewStateObserver()
+                .observe(this, Observer<ViewState<Detail>> {
+                    when (it) {
+                        is LoadingState -> {
+                            showProgress()
+                        }
+                        is DataState -> {
+                            if (it.data.isNotEmpty()) {
+                                launchDetailAdapter?.let { adapter ->
+                                    @Suppress("UNCHECKED_CAST")
+                                    adapter.setItems(it.data as? ArrayList<Detail>)
+                                    adapter.setItemClickListener(this)
+                                }
+                            }
+                            hideProgress()
+                        }
+                        is ErrorState -> {
+                            Timber.e(it.error)
+                            hideProgress()
+                        }
+                    }
+                })
     }
 }

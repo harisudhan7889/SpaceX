@@ -1,7 +1,10 @@
 package com.spacex.launch.list.di
 
+import android.app.Application
 import com.spacex.launch.BuildConfig
+import com.spacex.launch.common.SpaceXDatabase
 import com.spacex.launch.common.di.ConvertorModule
+import com.spacex.launch.common.model.LaunchDao
 import com.spacex.launch.list.endpoint.LauncheListApi
 import dagger.Module
 import dagger.Provides
@@ -15,14 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module(includes = [ConvertorModule::class])
 class LaunchListModule {
 
-    @LaunchListActivityScope
     @Provides
-    fun launchListApi(retrofit: Retrofit): LauncheListApi {
+    fun launchListApi(@LaunchList retrofit: Retrofit): LauncheListApi {
        return retrofit.create(LauncheListApi::class.java)
     }
 
-    @LaunchListActivityScope
     @Provides
+    @LaunchList
     fun retrofit(gsonConverterFactory: GsonConverterFactory,
                  rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit {
         return Retrofit.Builder()
@@ -32,4 +34,8 @@ class LaunchListModule {
                 .build()
     }
 
+    @Provides
+    fun dao(appContext: Application): LaunchDao {
+        return SpaceXDatabase.getInstance(appContext).launchDao()
+    }
 }

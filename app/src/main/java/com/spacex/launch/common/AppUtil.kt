@@ -3,7 +3,7 @@ package com.spacex.launch.common
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.widget.ImageView
 import com.spacex.launch.R
 import com.spacex.launch.common.widget.CircularImageView

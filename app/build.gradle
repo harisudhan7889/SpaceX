@@ -15,7 +15,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -33,13 +33,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintLayoutVer}"
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVer}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVer}"
+    implementation "com.google.android.material:material:${rootProject.ext.materialComponentVer}"
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //RxJava2 and RxAndroid2
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVer}"
@@ -61,13 +61,13 @@ dependencies {
     implementation "com.squareup.picasso:picasso:${rootProject.ext.picassoVer}"
 
     // Architecture components
-    implementation "android.arch.lifecycle:runtime:${rootProject.ext.archVersion}"
-    implementation "android.arch.lifecycle:extensions:${rootProject.ext.archVersion}"
-    kapt "android.arch.lifecycle:compiler:${rootProject.ext.archVersion}"
-    implementation "android.arch.persistence.room:runtime:${rootProject.ext.archVersion}"
-    kapt "android.arch.persistence.room:compiler:${rootProject.ext.archVersion}"
-    implementation "android.arch.persistence.room:rxjava2:${rootProject.ext.archVersion}"
+    implementation "androidx.lifecycle:lifecycle-runtime:${rootProject.ext.archLifeCycleVer}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifeCycleVer}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${rootProject.ext.archLifeCycleVer}"
+    implementation "androidx.room:room-runtime:${rootProject.ext.archRoomVer}"
+    kapt "androidx.room:room-compiler:${rootProject.ext.archRoomVer}"
+    implementation "androidx.room:room-rxjava2:${rootProject.ext.archRoomVer}"
 
     // Timber
-    implementation "com.jakewharton.timber:timber:${rootProject.ext.timberVersion}"
+    implementation "com.jakewharton.timber:timber:${rootProject.ext.timberVer}"
 }

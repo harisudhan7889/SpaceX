@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name="com.spacex.launch.list.ui.ListLaunchesActivity"
+            android:name="com.spacex.launch.list.ui.LaunchListActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 

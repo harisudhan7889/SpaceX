@@ -9,7 +9,7 @@ import com.spacex.launch.detail.model.MediaDetail
 import kotlinx.android.synthetic.main.view_media_detail.view.*
 
 /**
- * Viewholder that holds views to display the media items
+ * ViewHolder that holds views to display the media items
  *
  * @see MediaDetail
  *
