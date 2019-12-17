@@ -14,7 +14,9 @@ import com.spacex.launch.common.recycler.OnItemClickListener
 class LaunchViewHolder(private val launchView: LaunchView?)
     : BaseViewHolder<LaunchData, OnItemClickListener<LaunchData>>(launchView) {
     override fun onBind(launchData: LaunchData?, listener: OnItemClickListener<LaunchData>?) {
-        launchView?.bind(launchData)
-        launchView?.setOnClickListener { listener?.onItemClicked(launchData) }
+        launchView?.apply {
+            bind(launchData)
+            setOnClickListener { listener?.onItemClicked(launchData) }
+        }
     }
 }

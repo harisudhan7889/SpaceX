@@ -1,10 +1,9 @@
 package com.spacex.launch.list.ui
 
-import androidx.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
 import com.spacex.launch.R
 import com.spacex.launch.common.archcomponent.ViewModelFactory
 import com.spacex.launch.common.model.*
