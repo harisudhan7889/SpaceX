@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import com.spacex.launch.common.archcomponent.UseCase
 import com.spacex.launch.common.model.LaunchDao
 import com.spacex.launch.common.model.LaunchData
+import com.spacex.launch.common.rx.SimpleCompletableObserver
 import com.spacex.launch.list.endpoint.LauncheListApi
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.Executors
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -82,10 +83,15 @@ class LaunchListUseCase @Inject constructor(private val launchListApi: LauncheLi
      */
     fun cacheInDatabase(launches: List<LaunchData>) {
         if (totalPastLaunches == 0) {
-            // Cannot update the DB in main thread, so created a background thread
-            val executor = Executors.newFixedThreadPool(1)
-            val worker = Runnable { launchDao.insertPastLaunches(launches) }
-            executor.execute(worker)
+            launchDao
+                    .insertPastLaunches(launches)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : SimpleCompletableObserver() {
+                        override fun onComplete() {
+                            Timber.d("SpaceX Past Launches are inserted to the database.")
+                        }
+                    })
         }
     }
 }

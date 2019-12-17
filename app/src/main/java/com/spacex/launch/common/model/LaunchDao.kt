@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -28,7 +29,7 @@ interface LaunchDao {
      * @see OnConflictStrategy.REPLACE
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPastLaunches(launches: List<LaunchData>?)
+    fun insertPastLaunches(launches: List<LaunchData>?): Completable
 
     /**
      * Delete the data from database.
